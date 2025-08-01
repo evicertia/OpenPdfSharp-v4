@@ -200,7 +200,7 @@ namespace iTextSharp.text.pdf {
             if (iInfo != null)
                 skipInfo = iInfo.Number;
             if (oldInfo != null && oldInfo.Get(PdfName.PRODUCER) != null)
-                producer = oldInfo.GetAsString(PdfName.PRODUCER).ToString();
+                producer = oldInfo.GetAsString(PdfName.PRODUCER).ToUnicodeString();
             if (producer == null) {
                 producer = Document.Version;
             }
@@ -323,7 +323,7 @@ namespace iTextSharp.text.pdf {
                 }
             }
             newInfo.Put(PdfName.MODDATE, date);
-            newInfo.Put(PdfName.PRODUCER, new PdfString(producer));
+            newInfo.Put(PdfName.PRODUCER, new PdfString(producer, PdfObject.TEXT_UNICODE));
             if (append) {
                 if (iInfo == null)
                     info = AddToBody(newInfo, false).IndirectReference;
